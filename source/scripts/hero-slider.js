@@ -14,9 +14,17 @@ sliderBtnPrev.addEventListener('click', prevSlide);
 window.addEventListener('resize', showSlide);
 
 function showSlide() {
-  sliderWidth = document.querySelector('.slider').offsetWidth;
-  sliderLine.style.width = `${sliderWidth * sliderImages.length }px`;
-  sliderImages.forEach((item) => item.style.width = `${sliderWidth }px`);
+  const slider = document.querySelector('.slider');
+  if (!slider || sliderImages.length === 0) {
+    return;
+  } // Проверка на существование слайдера и наличие изображений
+
+  sliderWidth = slider.offsetWidth;
+  sliderLine.style.width = `${sliderWidth * sliderImages.length}px`;
+
+  sliderImages.forEach((item) => {
+    item.style.width = `${sliderWidth}px`;
+  });
 
   rollSlider();
 }
